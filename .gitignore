@@ -1,0 +1,9 @@
+account.json
+terraform.tfvars
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+venv
+profile_backend.py
+.terraform.lock.hcl
+firebase-config.json
