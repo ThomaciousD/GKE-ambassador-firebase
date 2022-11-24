@@ -33,18 +33,18 @@ gcloud config set project $PROJECT_ID
 ```
 
 # Create a service account and a key use it for deployment
-
+```
 gcloud iam service-accounts create terraform
 gcloud iam service-accounts keys create account.json --iam-account=terraform@${PROJECT_ID}.iam.gserviceaccount.com
-
+```
 **Warning** Make sure account.json ".gitignore" is in your conf file
 
 # Give permissions to your service account
-
+```
 gcloud projects add-iam-policy-binding $PROJECT_ID --member serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com --role roles/owner
 
 gcloud projects add-iam-policy-binding $PROJECT_ID --member serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com --role roles/firebase.admin
-
+```
 # Run Terraform scripts
 - Authenticate with this service account to Terraform
 ```
