@@ -41,9 +41,9 @@ gcloud iam service-accounts keys create account.json --iam-account=terraform@${P
 
 # Give permissions to your service account
 
-gcloud projects add-iam-policy-binding $PROJECT_ID --member serviceAccount:terraform@bold-rampart-302516.iam.gserviceaccount.com --role roles/owner
+gcloud projects add-iam-policy-binding $PROJECT_ID --member serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com --role roles/owner
 
-gcloud projects add-iam-policy-binding $PROJECT_ID --member serviceAccount:terraform@bold-rampart-302516.iam.gserviceaccount.com --role roles/firebase.admin
+gcloud projects add-iam-policy-binding $PROJECT_ID --member serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com --role roles/firebase.admin
 
 # Run Terraform scripts
 - Authenticate with this service account to Terraform
