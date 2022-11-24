@@ -1,4 +1,6 @@
 name: Docker Image CI
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT }}
 
 on:
   push:
@@ -13,6 +15,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Cloud SDK
+      uses: google-github-actions/setup-gcloud@v0.2.0
+      with:
+        project_id: ${{ env.PROJECT_ID }}
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+
     - name: Build the Docker image
-      run: cd profile_backend; docker build . --file Dockerfile --tag profile_backend:$(date +%s)
+      run: |-
+        cd profile_backend 
+        docker build . --file Dockerfile --tag gcr.io/${{ env.PROJECT_ID }}/profile_backend:${{  github.sha }}
+        docker push gcr.io/${{ env.PROJECT_ID }}/profile_backend:${{  github.sha }}
