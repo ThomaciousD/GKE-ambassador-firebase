@@ -109,3 +109,11 @@ Hello, world!
 Version: 1.0.0
 Hostname: hello-world-<pod_number>
 ```
+
+# Build and Push a container image
+
+In order for the terraform Service Account to be able to push an image to the Google Cloud Container Registry, you must setup the proper permissions to the bucket storing the actualy images.
+```
+gsutil iam ch serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com:legacyBucketWriter gs://artifacts.${PROJECT_ID}.appspot.com/
+
+```

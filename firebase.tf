@@ -1,8 +1,20 @@
+resource "google_project_service" "resource_manager" {
+    provider = google
+    project = local.project_id
+    service = "cloudresourcemanager.googleapis.com"
+    disable_dependent_services = true
+}
+
 resource "google_project_service" "firebase" {
     provider = google
     project = local.project_id
     service = "firebase.googleapis.com"
     disable_dependent_services = true
+}
+
+resource "google_firebase_project" "hellogke" {
+  provider = google-beta
+  project  = local.project_id
 }
 
 resource "google_firebase_web_app" "hellogke" {
