@@ -52,6 +52,7 @@ export GOOGLE_APPLICATION_CREDENTIALS=account.json
 ```
 - Run Terraform
 ```
+terraform init
 terraform plan
 terraform apply
 ```
